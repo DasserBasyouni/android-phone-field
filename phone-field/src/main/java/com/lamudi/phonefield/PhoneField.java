@@ -15,6 +15,8 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
+import java.util.List;
+
 /**
  * PhoneField is a custom view for phone numbers with the corresponding country flag, and it uses
  * libphonenumber to validate the phone number.
@@ -32,6 +34,8 @@ public abstract class PhoneField extends LinearLayout {
   private PhoneNumberUtil mPhoneUtil = PhoneNumberUtil.getInstance();
 
   private int mDefaultCountryPosition = 0;
+
+  private List<Country> countries;
 
   /**
    * Instantiates a new Phone field.
@@ -77,7 +81,10 @@ public abstract class PhoneField extends LinearLayout {
       throw new IllegalStateException("Please provide a valid xml layout");
     }
 
-    final CountriesAdapter adapter = new CountriesAdapter(getContext(), Countries.COUNTRIES);
+    if (countries == null)
+      countries = Countries.COUNTRIES;
+
+    final CountriesAdapter adapter = new CountriesAdapter(getContext(), countries);
     mSpinner.setOnTouchListener((v, event) -> {
       hideKeyboard();
       return false;
@@ -182,6 +189,15 @@ public abstract class PhoneField extends LinearLayout {
     } catch (NumberParseException ignored) {
     }
     return getRawInput();
+  }
+
+  /**
+   * Sets default Country.COUNTRIES.
+   *
+   * @param countries counties displayed in spinner
+   */
+  public void setCountries(List<Country> countries) {
+    this.countries = countries;
   }
 
   /**
