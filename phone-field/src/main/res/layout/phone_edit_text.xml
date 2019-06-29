@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <Spinner
+  <androidx.appcompat.widget.AppCompatSpinner
       android:tag="@string/com_lamudi_phonefield_flag_spinner"
       android:layout_width="@dimen/spinner_width"
       android:layout_height="wrap_content"
@@ -10,7 +10,7 @@
       android:popupBackground="@color/pf_white"
       />
 
-  <EditText
+  <androidx.appcompat.widget.AppCompatEditText
       android:tag="@string/com_lamudi_phonefield_edittext"
       android:layout_width="0dp"
       android:layout_height="match_parent"
