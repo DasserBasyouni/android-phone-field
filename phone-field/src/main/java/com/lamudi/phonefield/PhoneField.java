@@ -65,6 +65,9 @@ public abstract class PhoneField extends LinearLayout {
    */
   public PhoneField(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+  }
+
+  public void build(){
     inflate(getContext(), getLayoutResId(), this);
     updateLayoutAttributes();
     prepareView();
@@ -196,8 +199,9 @@ public abstract class PhoneField extends LinearLayout {
    *
    * @param countries counties displayed in spinner
    */
-  public void setCountries(List<Country> countries) {
+  public PhoneField setCountries(List<Country> countries) {
     this.countries = countries;
+    return this;
   }
 
   /**
