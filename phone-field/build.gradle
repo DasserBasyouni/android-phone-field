@@ -47,7 +47,7 @@ android {
 dependencies {
   testImplementation 'junit:junit:4.12'
   implementation 'androidx.appcompat:appcompat:1.0.2'
-  implementation 'com.googlecode.libphonenumber:libphonenumber:7.3.1'
+  implementation 'com.googlecode.libphonenumber:libphonenumber:8.10.14'
   implementation 'com.google.android.material:material:1.0.0'
 }
 
