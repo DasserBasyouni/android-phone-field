@@ -24,7 +24,7 @@ public class CountriesAdapter extends ArrayAdapter<Country> implements SpinnerAd
     private final LayoutInflater mInflater;
     private final List<Country> countries;
 
-    CountriesAdapter(Context context, List<Country> countries) {
+    public CountriesAdapter(Context context, List<Country> countries) {
         super(context, R.layout.item_country, R.id.name, countries);
         mInflater = LayoutInflater.from(getContext());
         this.countries = countries;
