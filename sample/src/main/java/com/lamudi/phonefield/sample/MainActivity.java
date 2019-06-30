@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lamudi.phonefield.Countries;
 import com.lamudi.phonefield.PhoneEditText;
 import com.lamudi.phonefield.PhoneInputLayout;
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         assert phoneInputLayout != null;
         assert phoneEditText != null;
         assert button != null;
+
+        phoneInputLayout.buildWithCounties(Countries.COUNTRIES2);
 
         phoneInputLayout.setHint(R.string.phone_hint);
         phoneInputLayout.setDefaultCountry("DE");

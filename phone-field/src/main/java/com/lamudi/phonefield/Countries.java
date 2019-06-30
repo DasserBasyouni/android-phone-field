@@ -251,4 +251,11 @@ public final class Countries {
     COUNTRIES.add(new Country("ax", "Åland Islands", 358));
   }
 
+  public static final List<Country> COUNTRIES2 = new ArrayList<>();
+  static {
+    COUNTRIES2.add(new Country("af", "Afghanistan (‫افغانستان‬‎)", 93));
+    COUNTRIES2.add(new Country("al", "Albania (Shqipëri)", 355));
+    COUNTRIES2.add(new Country("dz", "Algeria (‫الجزائر‬‎)", 213));
+  }
+
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -35,8 +36,6 @@ public abstract class PhoneField extends LinearLayout {
 
   private int mDefaultCountryPosition = 0;
 
-  private List<Country> countries;
-
   /**
    * Instantiates a new Phone field.
    *
@@ -65,18 +64,19 @@ public abstract class PhoneField extends LinearLayout {
    */
   public PhoneField(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-  }
-
-  public void build(){
     inflate(getContext(), getLayoutResId(), this);
     updateLayoutAttributes();
-    prepareView();
+  }
+
+  public void buildWithCounties(List<Country> countries){
+    prepareView(countries);
   }
 
   /**
    * Prepare view.
+   * @param countries
    */
-  protected void prepareView() {
+  protected void prepareView(List<Country> countries) {
     mSpinner = findViewWithTag(getResources().getString(R.string.com_lamudi_phonefield_flag_spinner));
     mEditText = findViewWithTag(getResources().getString(R.string.com_lamudi_phonefield_edittext));
 
@@ -87,7 +87,10 @@ public abstract class PhoneField extends LinearLayout {
     if (countries == null)
       countries = Countries.COUNTRIES;
 
+    Log.e("Z_", "list= " + countries.size());
+
     final CountriesAdapter adapter = new CountriesAdapter(getContext(), countries);
+    CountriesAdapter ss = adapter;
     mSpinner.setOnTouchListener((v, event) -> {
       hideKeyboard();
       return false;
@@ -195,16 +198,6 @@ public abstract class PhoneField extends LinearLayout {
   }
 
   /**
-   * Sets default Country.COUNTRIES.
-   *
-   * @param countries counties displayed in spinner
-   */
-  public PhoneField setCountries(List<Country> countries) {
-    this.countries = countries;
-    return this;
-  }
-
-  /**
    * Sets default country.
    *
    * @param countryCode the country code
@@ -215,7 +208,8 @@ public abstract class PhoneField extends LinearLayout {
       if (country.getCode().equalsIgnoreCase(countryCode)) {
         mCountry = country;
         mDefaultCountryPosition = i;
-        mSpinner.setSelection(i);
+        if(mSpinner != null)
+            mSpinner.setSelection(i);
       }
     }
   }
@@ -269,7 +263,8 @@ public abstract class PhoneField extends LinearLayout {
    * @param resId the res id
    */
   public void setHint(int resId) {
-    mEditText.setHint(resId);
+      if (mEditText != null)
+          mEditText.setHint(resId);
   }
 
   /**

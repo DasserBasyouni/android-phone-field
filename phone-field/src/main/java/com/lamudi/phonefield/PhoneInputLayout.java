@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 /**
  * Implementation of PhoneField that uses {@link TextInputLayout}
  * Created by Ismail on 5/6/16.
@@ -36,8 +38,8 @@ public class PhoneInputLayout extends PhoneField {
   }
 
   @Override
-  protected void prepareView() {
-    super.prepareView();
+  protected void prepareView(List<Country> countries) {
+    super.prepareView(countries);
     mTextInputLayout = findViewWithTag(getResources().getString(R.string.com_lamudi_phonefield_til_phone));
   }
 
@@ -48,7 +50,8 @@ public class PhoneInputLayout extends PhoneField {
 
   @Override
   public void setHint(int resId) {
-    mTextInputLayout.setHint(getContext().getString(resId));
+    if (mTextInputLayout != null)
+      mTextInputLayout.setHint(getContext().getString(resId));
   }
 
   @Override
